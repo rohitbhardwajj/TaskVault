@@ -16,6 +16,6 @@ RUN npm run build
 RUN npm install -g serve
 
 # Step 6: Serve the React build folder
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["npm", "run", "dev", "--", "--host"] 
 
-EXPOSE 3000
+EXPOSE 5173
