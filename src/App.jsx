@@ -16,18 +16,7 @@ const App = () => {
     }
   };
 
-  // ✅ LocalStorage se load karna on first mount
-  useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-    if (savedTasks) {
-      setTasks(savedTasks);
-    }
-  }, []);
 
-  // ✅ Tasks change hone par localStorage update karna
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
 
   return (
     <>
