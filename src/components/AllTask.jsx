@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-// useEffect
+
 
 const AllTask = ({ tasks, setTasks }) => {
 
@@ -8,12 +7,7 @@ const AllTask = ({ tasks, setTasks }) => {
     const updatedTasks = tasks.filter((_, i) => i !== indexToDelete);
     setTasks(updatedTasks);
   };
-  useEffect(() => {
-  const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-  if (savedTasks) {
-    setTasks(savedTasks);
-  }
-}, []);
+ 
 
 
 
