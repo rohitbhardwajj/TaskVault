@@ -11,6 +11,7 @@ const App = () => {
 
   const add = () => {
     if (val.trim() !== '') {
+      localStorage.setItem("a", val);
       setTasks([...tasks, val]);
       setval('');
     }
