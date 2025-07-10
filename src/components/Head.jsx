@@ -7,7 +7,7 @@ const Head = () => {
     <div className='flex justify-center items-center gap-2 bg-black h-[10%]'>
       <h1 className='text-[clamp(1.5rem,3.5vw,5rem)] font-black bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent my-20'>
         <Typewriter
-          words={['Task Tracker']}
+          words={['Task Tracker Rohit']}
           loop={0}
           cursor
           cursorStyle='|'
