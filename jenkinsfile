@@ -1,5 +1,6 @@
 pipeline {
-    agent label {'agent-vinod'}
+   agent { label 'agent-vinod' }
+
 
     stages {
         stage('Code') {
