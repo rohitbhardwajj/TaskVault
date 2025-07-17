@@ -2,10 +2,10 @@
 const express = require('express');
 const connectDb = require('./src/db/db');
 const TaskAdd = require('./src/db/models/Task.model'); // Remove .jsx
-
+const cors = require('cors');
 const app = express();
 app.use(express.json());
-
+app.use(cors()); 
 connectDb();
 
 app.post('/', async (req, res) => {

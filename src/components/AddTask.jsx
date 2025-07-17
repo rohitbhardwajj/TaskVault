@@ -2,9 +2,7 @@
 
 const AddTask = (props) => {
 
-  let setItemLocalStorage = ()=>{
 
-  }
  
   return (
     <div className="lft h-[100%] w-[50%] bg-black flex items-center flex-col">
@@ -22,7 +20,11 @@ const AddTask = (props) => {
         <button
 
         
-          onClick={props.add }
+onClick={() => {
+  props.add && props.add();
+  props.handleAdd && props.handleAdd();
+}}
+
          
           className='my-10 hover:bg-red-900 active:scale-90 rounded-sm font-bold p-1.5 cursor-pointer font-black bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent'
         >
