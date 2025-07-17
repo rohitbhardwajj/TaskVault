@@ -1,16 +1,10 @@
-
+import React from 'react';
 
 const AllTask = ({ tasks, setTasks }) => {
-
-  // 🧹 Delete function with index
   const del = (indexToDelete) => {
     const updatedTasks = tasks.filter((_, i) => i !== indexToDelete);
     setTasks(updatedTasks);
   };
- 
-
-
-
 
   return (
     <div className='rht w-[50%] h-[100%] bg-black overflow-x-hidden overflow-y-auto flex items-center flex-col'>
@@ -24,7 +18,7 @@ const AllTask = ({ tasks, setTasks }) => {
         ) : (
           tasks.map((task, index) => (
             <ol key={index} className='bg-gray-600 w-[90%] rounded-xl flex justify-between items-center text-white font-medium capitalize py-2 px-2 my-2'>
-              <li>{task}</li>
+              <li>{typeof task === 'string' ? task : task.task}</li>
               <span
                 onClick={() => del(index)}
                 className='hover:bg-red-900 active:scale-90 rounded-sm font-bold p-1.5 cursor-pointer font-black bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent'>

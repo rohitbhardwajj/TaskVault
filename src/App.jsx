@@ -3,36 +3,49 @@ import Head from './components/Head';
 import AddTask from './components/AddTask';
 import AllTask from './components/AllTask';
 import axios from 'axios';
+
 const App = () => {
   const [val, setval] = useState('');
   const [tasks, setTasks] = useState([]);
 
   const twoWay = (e) => setval(e.target.value);
 
-  const add = () => {
-    if (val.trim() !== '') {
-      setTasks([...tasks, val]);
-      setval('');
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000');
+      console.log(response.data);
+      setTasks(response.data); // ✅ This line should NOT be commented
+    } catch (err) {
+      console.error("Error fetching tasks", err);
     }
   };
 
-const handleAdd = async () => {
-  if (!val.trim()) return;
-  try {
-   await axios.post('http://localhost:3000', { task: val });
-  } catch (err) {
-    console.error("Error adding task", err);
-  }
-};
+  const handleAdd = async () => {
+    if (!val.trim()) return;
+    try {
+      await axios.post('http://localhost:3000', { task: val });
+      setval('');
+      fetchTasks(); // ✅ Refresh task list
+    } catch (err) {
+      console.error("Error adding task", err);
+    }
+  };
 
-  
+  const add = () => {
+    if (val.trim() !== '') {
+      handleAdd();
+    }
+  };
 
+  useEffect(() => {
+    fetchTasks(); 
+  }, []);
 
   return (
     <>
       <Head />
       <div className="all h-[90%] w-[100%] flex">
-        <AddTask  twoWay={twoWay} val={val} add={add} handleAdd={handleAdd} />
+        <AddTask twoWay={twoWay} val={val} add={add} handleAdd={handleAdd} />
         <AllTask tasks={tasks} setTasks={setTasks} />
       </div>
     </>
