@@ -31,11 +31,16 @@ const App = () => {
     }
   };
 
-  const add = () => {
-    if (val.trim() !== '') {
-      handleAdd();
-    }
-  };
+  const deleteTask = async (id) => {
+  try {
+    await axios.delete(`http://localhost:3000/${id}`);
+    // Optional: update state after delete
+    setTasks(tasks.filter(task => task._id !== id));
+  } catch (err) {
+    console.error("Error deleting:", err);
+  }
+};
+
 
   useEffect(() => {
     fetchTasks(); 
@@ -45,8 +50,8 @@ const App = () => {
     <>
       <Head />
       <div className="all h-[90%] w-[100%] flex">
-        <AddTask twoWay={twoWay} val={val} add={add} handleAdd={handleAdd} />
-        <AllTask tasks={tasks} setTasks={setTasks} />
+        <AddTask twoWay={twoWay} val={val}  handleAdd={handleAdd} />
+        <AllTask tasks={tasks} setTasks={setTasks} deleteTask={deleteTask} />
       </div>
     </>
   );

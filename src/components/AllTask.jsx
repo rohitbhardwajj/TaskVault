@@ -1,11 +1,6 @@
 import React from 'react';
 
-const AllTask = ({ tasks, setTasks }) => {
-  const del = (indexToDelete) => {
-    const updatedTasks = tasks.filter((_, i) => i !== indexToDelete);
-    setTasks(updatedTasks);
-  };
-
+const AllTask = ({ tasks, setTasks, deleteTask }) => {
   return (
     <div className='rht w-[50%] h-[100%] bg-black overflow-x-hidden overflow-y-auto flex items-center flex-col'>
       <h1 className='heading text-[clamp(1.5rem,3vw,5rem)] font-bold fixed py-10 top-4 text-white my-10'>
@@ -16,11 +11,11 @@ const AllTask = ({ tasks, setTasks }) => {
         {tasks.length === 0 ? (
           <p className="text-white align-text-center flex item-center justify-center my-10 w-[100%]">No tasks yet.</p>
         ) : (
-          tasks.map((task, index) => (
-            <ol key={index} className='bg-gray-600 w-[90%] rounded-xl flex justify-between items-center text-white font-medium capitalize py-2 px-2 my-2'>
-              <li>{typeof task === 'string' ? task : task.task}</li>
+          tasks.map((task) => (
+            <ol key={task._id} className='bg-gray-600 w-[90%] rounded-xl flex justify-between items-center text-white font-medium capitalize py-2 px-2 my-2'>
+              <li>{task.task}</li>
               <span
-                onClick={() => del(index)}
+                onClick={() => deleteTask(task._id)}
                 className='hover:bg-red-900 active:scale-90 rounded-sm font-bold p-1.5 cursor-pointer font-black bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent'>
                 Delete
               </span>
