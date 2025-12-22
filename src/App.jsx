@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:3000');
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL);;
       console.log(response.data);
       setTasks(response.data); // ✅ This line should NOT be commented
     } catch (err) {
@@ -23,7 +23,7 @@ const App = () => {
   const handleAdd = async () => {
     if (!val.trim()) return;
     try {
-      await axios.post('http://localhost:3000', { task: val });
+      await axios.post(import.meta.env.VITE_BACKEND_URL), { task: val });
       setval('');
       fetchTasks(); // ✅ Refresh task list
     } catch (err) {
@@ -33,7 +33,7 @@ const App = () => {
 
   const deleteTask = async (id) => {
   try {
-    await axios.delete(`http://localhost:3000/${id}`);
+    await axios.delete(`import.meta.env.VITE_BACKEND_URL/${id}`);
     // Optional: update state after delete
     setTasks(tasks.filter(task => task._id !== id));
   } catch (err) {
