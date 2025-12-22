@@ -23,7 +23,7 @@ const App = () => {
   const handleAdd = async () => {
     if (!val.trim()) return;
     try {
-      await axios.post(import.meta.env.VITE_BACKEND_URL), { task: val });
+      await axios.post(import.meta.env.VITE_BACKEND_URL, { task: val });
       setval('');
       fetchTasks(); // ✅ Refresh task list
     } catch (err) {
