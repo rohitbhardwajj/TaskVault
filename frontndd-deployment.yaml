@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-vault-frontend
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-vault-frontend
+  template:
+    metadata:
+      labels:
+        app: task-vault-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: rohit20000/task-vaut-frontend
+          ports:
+            - containerPort: 80
+

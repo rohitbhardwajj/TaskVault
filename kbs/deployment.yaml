@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-vault-deployment
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-vault
+  template:
+    metadata:
+      labels:
+        app: task-vault
+    spec:
+      containers:
+        - name: task-vault
+          image: rohit20000/task-vault-backend  # apni image ka naam
+          ports:
+            - containerPort: 3000
+
