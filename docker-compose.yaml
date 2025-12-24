@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+
+  backend:
+    image: rohit20000/task-vault-backend
+    container_name: backend
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      MONGO_URL: mongodb+srv://rohit:7290080590@todo.drqki83.mongodb.net/
+
+    networks:
+      - app-net
+
+
+  frontend:
+    image: rohit20000/task-vault-frontend
+    container_name: frontend
+
+    ports:
+      - "80:80"
+
+    environment:
+      VITE_BACKEND_URL: 98.92.26.107:3000
+
+    depends_on:
+      - backend
+
+    networks:
+      - app-net
+
+
+networks:
+  app-net:
+    driver: bridge
+
